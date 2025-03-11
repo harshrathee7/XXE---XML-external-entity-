@@ -43,19 +43,31 @@ payloads
         <storeId>1</storeId>
 </stockCheck>
 ```
-Response:
+```Response:
             HTTP/2 400 Bad Request
+
             Content-Type: application/json; charset=utf-8
+
             X-Frame-Options: SAMEORIGIN
+
             Content-Length: 552
+
             "Invalid product ID: {
+
             "Code" : "Success",
+
             "LastUpdated" : "2025-03-11T08:19:31.312893341Z",
+
             "Type" : "AWS-HMAC",
+
             "AccessKeyId" : "w4CprEoDqP8HcOoLxq1l",
+
             "SecretAccessKey" : "iGY2bXKWVPmXrG1tllcM4B4pZCq5XivMtFxpbnhm",
+
             "Token" :                   "uqqU5kZR1JlvTBF85Eyn2aJDv6zEVFdntShz9zMpqtazw5AQrIkrNisng0DLy0GomI0uqbATyQwBUNw6Ey4YubP4CJnqQAoqO1Qd0lMkkVQPTgtREDUuQiNVAf0qzMUKRsXS7G9pdI6PBfm1g8V0wCNYSKW2YdkWSZaYsOqc4CmXWT4cE0znDrONJ2cN6NpPJCEAFmwO55NDqNnpuMRFovx8DUVs4QdCFDNdW4Vw0JVAQdtU5jsirgxMS4hK1Qkd",
+
   "Expiration" : "2031-03-10T08:19:31.312893341Z"
+
             }"
 ```
 ---
