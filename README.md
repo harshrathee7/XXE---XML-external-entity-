@@ -50,6 +50,9 @@ XXE (XML External Entity) vulnerability is a security flaw that occurs when an a
 **Use JSON Instead of XML**: JSON does not support external entities, reducing the risk of XXE.
 
 ## **Refrence** 
-   **https://rohitcoder.medium.com/comprehensive-guide-detecting-fixing-and-defending-against-xxe-attacks-in-python-and-java-e78691b4b918**
-   **https://www.w3schools.com/xml/xml_dtd_intro.asp**
+   ```
+   https://rohitcoder.medium.com/comprehensive-guide-detecting-fixing-and-defending-against-xxe-attacks-in-python-and-java-e78691b4b918
+   ```
+   https://www.w3schools.com/xml/xml_dtd_intro.asp
+  ```  
 ---
