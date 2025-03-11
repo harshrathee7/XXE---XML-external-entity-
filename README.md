@@ -13,9 +13,7 @@ XXE (XML External Entity) vulnerability is a security flaw that occurs when an a
 ##  **Example of a Vulnerable XML**
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE foo [  
-    <!ENTITY xxe SYSTEM "file:///etc/passwd">  
-]>  
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>  
 <root>  
     <data>&xxe;</data>  
 </root>
